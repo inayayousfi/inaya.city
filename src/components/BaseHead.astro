@@ -30,7 +30,14 @@ const { title, description } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<!-- Removed Atkinson font preloads; using Departure Mono (system or self-hosted if added) -->
+<!-- Preload Departure Mono (self-hosted) -->
+<link
+  rel="preload"
+  href="/fonts/DepartureMono-Regular.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
