@@ -21,16 +21,15 @@
 	--content-width: 720px;
 }
 body {
-	/* If you add the Departure Mono files to /public/fonts, you can uncomment the @font-face below.
 	@font-face {
 		font-family: "Departure Mono";
-		src: url("/fonts/departure-mono-regular.woff2") format("woff2"),
-			 url("/fonts/departure-mono-regular.woff") format("woff");
+		src: url("fonts/departure-mono-regular.woff2") format("woff2"),
+			 url("fonts/departure-mono-regular.woff") format("woff");
 		font-weight: 400;
 		font-style: normal;
 		font-display: swap;
 	}
-	*/
+
 	font-family: "Departure Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
 	margin: 0;
