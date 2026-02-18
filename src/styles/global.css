@@ -20,17 +20,16 @@
 	/* Unified content width across the site (match blog posts) */
 	--content-width: 720px;
 }
-body {
-	@font-face {
-		font-family: "Departure Mono";
-		src: url("/fonts/DepartureMono-Regular.woff2") format("woff2"),
-			 url("/fonts/DepartureMono-Regular.woff") format("woff");
-		font-weight: 400;
-		font-style: normal;
-		font-display: swap;
-	}
+@font-face {
+	font-family: "Iosevka";
+	src: url("/fonts/Iosevka-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
 
-	font-family: "Departure Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+body {
+	font-family: "Iosevka", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
 	margin: 0;
 	padding: 0;
