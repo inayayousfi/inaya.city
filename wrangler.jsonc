@@ -1,0 +1,15 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "inaya-city",
+	"compatibility_date": "2026-08-02",
+	// Static site. No "main" key on purpose, so no Worker script runs at all.
+	// Every request is served straight from the built assets.
+	"assets": {
+		"directory": "./dist",
+		// Astro emits directory-style URLs, so /about resolves to /about/index.html.
+		"html_handling": "auto-trailing-slash",
+		// Unmatched paths serve dist/404.html with a real 404 status,
+		// rather than Cloudflare's default bare error page.
+		"not_found_handling": "404-page"
+	}
+}
