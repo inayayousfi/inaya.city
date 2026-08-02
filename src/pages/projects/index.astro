@@ -2,20 +2,25 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { SITE_TITLE } from "../../consts";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead
+      title={SITE_TITLE + " | Projects"}
+      description="Things I've made, or am currently making. Mostly empty for now."
+    />
   </head>
   <body>
     <Header />
     <main>
-      <h1>
-        Coming soon(&trade;)...
-      </h1>
+      <h1>Coming soon(&trade;)...</h1>
+      <p>
+        Nothing here yet. In the meantime, the code I've pushed publicly is on
+        <a href="https://github.com/ZiedYousfi">GitHub</a>.
+      </p>
     </main>
     <Footer />
   </body>

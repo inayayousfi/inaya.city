@@ -4,9 +4,9 @@ const today = new Date();
 
 <footer>
   <div class="container">
-    &copy; {today.getFullYear()} Zied Yousfi. All rights reserved.
+    &copy; {today.getFullYear()} Inaya Yousfi. All rights reserved.
     <div class="social-links">
-      <a href="https://x.com/ziedsanstalent">
+      <a href="https://x.com/inayarretable">
         <span class="sr-only">X/Twitter</span>
         <svg
           viewBox="0 0 512 512"
@@ -36,8 +36,9 @@ const today = new Date();
       </a>
       <a href="https://www.linkedin.com/in/zied-yousfi-8aa620346">
         <span class="sr-only">LinkedIn</span>
+        <!-- viewBox is cropped to the glyph bounds so it fills the 32px box like the other two -->
         <svg
-          viewBox="0 0 24 24"
+          viewBox="4 4 16 16"
           aria-hidden="true"
           width="32"
           height="32"
@@ -70,11 +71,14 @@ const today = new Date();
   }
   .social-links {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 1em;
     margin-top: 1em;
   }
   .social-links a {
+    /* flex, not inline, so the svg stops sitting on the text baseline */
+    display: flex;
     text-decoration: none;
     color: rgb(var(--gray));
   }
