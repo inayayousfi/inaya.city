@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Inaya.city";
 export const SITE_DESCRIPTION =
-  "Inaya Yousfi's corner of the internet. Low level systems, art school leftovers, drum and bass, and whatever I'm currently taking apart.";
+  "Inaya Yousfi's corner of the internet. Low level systems, art, drum and bass, and whatever I'm currently taking apart.";
