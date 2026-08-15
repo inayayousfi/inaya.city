@@ -1,0 +1,375 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import Footer from "../../../components/Footer.astro";
+import Header from "../../../components/Header.astro";
+import CompanyProjects from "../../../components/projects/software/CompanyProjects.astro";
+import Employment from "../../../components/projects/software/Employment.astro";
+import OpenSourceContributions from "../../../components/projects/software/OpenSourceContributions.astro";
+import OpenSourceMaintainedProjects from "../../../components/projects/software/OpenSourceMaintainedProjects.astro";
+import PersonalProjects from "../../../components/projects/software/PersonalProjects.astro";
+import { SITE_TITLE } from "../../../consts";
+
+const categories = [
+  { value: "company-projects", label: "Company Projects" },
+  { value: "employment", label: "Employment" },
+  { value: "open-source-contributions", label: "Open Source Contributions" },
+  { value: "open-source-maintained", label: "Open Source Maintained Projects" },
+  { value: "personal-projects", label: "Personal Projects" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SITE_TITLE + " | Software Projects"}
+      description="Professional, open-source, and personal software work by Inaya Yousfi."
+    />
+    <style is:global>
+      .terminal-heading {
+        margin-bottom: 2.25rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(var(--gray), 0.3);
+      }
+      .command {
+        margin: 0 0 0.55rem;
+        color: rgb(var(--gray));
+        font-size: 0.76rem;
+        line-height: 1.5;
+      }
+      .command span,
+      .path {
+        color: var(--accent);
+      }
+      .terminal-heading h1 {
+        margin-bottom: 0.5rem;
+      }
+      .terminal-heading p:last-child {
+        margin: 0;
+        color: rgb(var(--gray));
+        font-size: 0.9rem;
+      }
+      .filter-shell {
+        display: flex;
+        align-items: baseline;
+        gap: 0.8rem;
+        margin-bottom: 0.6rem;
+      }
+      .filter-prompt {
+        flex: 0 0 auto;
+        margin: 0;
+        color: var(--accent);
+        font-size: 0.76rem;
+      }
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.9rem;
+      }
+      .filters button {
+        padding: 0.2rem 0.25rem;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: rgb(var(--gray-dark));
+        font: inherit;
+        font-size: 0.72rem;
+        cursor: pointer;
+      }
+      .filters button:hover:not(:disabled),
+      .filters button:focus-visible,
+      .filters button[aria-pressed="true"] {
+        border-bottom-color: var(--accent);
+        color: rgb(var(--black));
+      }
+      .filters button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .filters button:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+      .filter-status {
+        margin: 0 0 2.5rem;
+        color: rgb(var(--gray));
+        font-size: 0.7rem;
+      }
+      .category-list {
+        display: grid;
+        gap: 3.5rem;
+      }
+      .software-category[hidden] {
+        display: none;
+      }
+      .category-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.8rem;
+      }
+      .category-heading .command {
+        order: 2;
+        margin: 0;
+        text-align: right;
+      }
+      .category-heading h2 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+      .output-heading,
+      .project-row {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 1.5rem;
+      }
+      .output-heading span:last-child {
+        display: none;
+      }
+      .output-heading {
+        padding: 0.55rem 0;
+        border-top: 1px solid rgba(var(--gray), 0.32);
+        border-bottom: 1px solid rgba(var(--gray), 0.32);
+        color: rgb(var(--gray));
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .project-row {
+        padding: 1.15rem 0 1.3rem;
+        border-bottom: 1px solid rgba(var(--gray), 0.22);
+      }
+      .project-row > summary {
+        grid-column: 1;
+        min-width: 0;
+        list-style: none;
+        cursor: pointer;
+      }
+      .project-row > summary::-webkit-details-marker {
+        display: none;
+      }
+      .project-row > summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      .project-title,
+      .project-summary {
+        display: block;
+      }
+      .project-title {
+        margin-bottom: 0.35rem;
+        color: rgb(var(--black));
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+      .project-summary {
+        color: rgb(var(--gray-dark));
+        font-size: 0.76rem;
+        line-height: 1.55;
+      }
+      .disclosure-label {
+        display: block;
+        margin-top: 0.55rem;
+        color: var(--accent);
+        font-size: 0.66rem;
+      }
+      .disclosure-label::before {
+        content: "+ ";
+      }
+      .project-row[open] .disclosure-label::before {
+        content: "- ";
+      }
+      .project-row > .row-content {
+        display: grid !important;
+        grid-column: 2;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .project-details {
+        grid-column: 1;
+        margin: 0;
+        font-size: 0.68rem;
+      }
+      .project-details div {
+        display: grid;
+        grid-template-columns: 6.2rem 1fr;
+        gap: 0.55rem;
+        margin-bottom: 0.35rem;
+      }
+      .project-details div:last-child {
+        margin-bottom: 0;
+      }
+      .project-details dt {
+        color: rgb(var(--gray));
+      }
+      .project-details dd {
+        margin: 0;
+        color: rgb(var(--gray-dark));
+        line-height: 1.45;
+      }
+      .project-destinations {
+        grid-column: 1;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.7rem;
+      }
+      .project-destinations li {
+        margin-bottom: 0.35rem;
+      }
+      .project-destinations a::before {
+        margin-right: 0.35rem;
+        color: var(--accent);
+        content: ">";
+      }
+      .empty-destination {
+        color: rgb(var(--gray));
+      }
+      @media (max-width: 700px) {
+        .filter-shell {
+          display: block;
+        }
+        .filter-prompt {
+          margin-bottom: 0.4rem;
+        }
+        .category-heading {
+          display: block;
+        }
+        .category-heading .command {
+          margin-bottom: 0.35rem;
+          text-align: left;
+        }
+        .category-heading h2 {
+          font-size: 1.2rem;
+        }
+        .output-heading {
+          display: none;
+        }
+        .project-row {
+          display: block;
+          padding: 1rem 0;
+        }
+        .project-row > summary {
+          position: relative;
+          padding-right: 5rem;
+        }
+        .disclosure-label {
+          position: absolute;
+          top: 0;
+          right: 0;
+          margin: 0;
+        }
+        .project-row > .row-content {
+          display: none !important;
+        }
+        .project-row[open] > .row-content {
+          display: grid !important;
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px dashed rgba(var(--gray), 0.28);
+        }
+        .project-details div {
+          grid-template-columns: 5.5rem 1fr;
+        }
+        .project-details,
+        .project-destinations {
+          grid-column: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="software-page">
+      <div class="terminal-heading">
+        <p class="command">
+          <span class="path">~/projects/software</span> <span>$</span> list --all
+        </p>
+        <h1>Software</h1>
+        <p>
+          Work for companies, employment, open source, and things I built for
+          myself.
+        </p>
+      </div>
+
+      <div class="filter-shell">
+        <p class="filter-prompt">$ filter --type</p>
+        <div class="filters" aria-label="Filter software projects">
+          <button type="button" data-filter="all" aria-pressed="true" disabled>
+            All
+          </button>
+          {
+            categories.map((category) => (
+              <button
+                type="button"
+                data-filter={category.value}
+                aria-pressed="false"
+                disabled
+              >
+                {category.label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      <p class="filter-status" id="filter-status" aria-live="polite">
+        Filtering needs JavaScript. All project categories are shown.
+      </p>
+
+      <div class="category-list" id="software-projects">
+        <CompanyProjects />
+        <Employment />
+        <OpenSourceContributions />
+        <OpenSourceMaintainedProjects />
+        <PersonalProjects />
+      </div>
+    </main>
+    <Footer />
+
+    <script>
+      const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+      const categories = document.querySelectorAll<HTMLElement>(
+        ".software-category[data-category]",
+      );
+      const status = document.querySelector<HTMLElement>("#filter-status");
+
+      buttons.forEach((button) => {
+        button.disabled = false;
+        button.addEventListener("click", () => {
+          const selected = button.dataset.filter;
+          let visibleCount = 0;
+
+          buttons.forEach((candidate) => {
+            candidate.setAttribute(
+              "aria-pressed",
+              String(candidate === button),
+            );
+          });
+
+          categories.forEach((category) => {
+            const visible =
+              selected === "all" || category.dataset.category === selected;
+            category.hidden = !visible;
+            if (visible) visibleCount += Number(category.dataset.count || 0);
+          });
+
+          if (status) {
+            status.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? "project" : "projects"}.`;
+          }
+        });
+      });
+
+      if (status) {
+        const total = Array.from(categories).reduce(
+          (count, category) => count + Number(category.dataset.count || 0),
+          0,
+        );
+        status.textContent = `Showing all ${total} projects.`;
+      }
+    </script>
+  </body>
+</html>

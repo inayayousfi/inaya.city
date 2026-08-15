@@ -10,19 +10,148 @@ import { SITE_TITLE } from "../../consts";
   <head>
     <BaseHead
       title={SITE_TITLE + " | Projects"}
-      description="Things I've made, or am currently making. Art as much as code. Mostly empty for now."
+      description="Art and software projects by Inaya Yousfi."
     />
+    <style>
+      .intro {
+        margin-bottom: 2.5rem;
+      }
+      .intro p {
+        margin-bottom: 0;
+        color: rgb(var(--gray));
+      }
+      .project-areas {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .area-intro {
+        margin: 1.25rem 0 0;
+        color: rgb(var(--gray));
+      }
+      .software-intro {
+        margin-top: 0;
+      }
+      .project-area {
+        position: relative;
+        display: flex;
+        min-height: 15rem;
+        overflow: hidden;
+        border: 1px solid rgba(var(--gray), 0.28);
+        border-radius: var(--card-radius);
+        color: inherit;
+        text-decoration: none;
+      }
+      .project-area:hover,
+      .project-area:focus-visible {
+        transform: translateY(var(--card-lift));
+        border-color: var(--accent);
+      }
+      .project-area:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .project-area .copy {
+        position: relative;
+        z-index: 1;
+        align-self: end;
+        width: 100%;
+        padding: 1.5rem;
+      }
+      .project-area h2 {
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+      }
+      .project-area p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+      .art {
+        background: #efe7d3 url("/projects/art/lorem-ipsum/preview.svg") center 28% / cover no-repeat;
+      }
+      .art::after {
+        position: absolute;
+        inset: 35% 0 0;
+        background: linear-gradient(transparent, rgba(239, 231, 211, 0.98) 40%);
+        content: "";
+      }
+      .art h2,
+      .art p {
+        color: #16130f;
+      }
+      .software-exchange {
+        display: grid;
+        gap: 0.5rem;
+      }
+      .software-prompt {
+        margin: 0;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(var(--gray), 0.28);
+        border-radius: var(--card-radius);
+        background: rgba(var(--gray-light), 0.5);
+        color: rgb(var(--gray-dark));
+        font-size: 0.9rem;
+      }
+      .software-prompt span {
+        color: var(--accent);
+      }
+      .software {
+        display: block;
+        min-height: 0;
+        padding: 0.75rem 1rem;
+        background:
+          linear-gradient(rgba(var(--gray-light), 0.88), rgba(var(--gray-light), 0.98)),
+          repeating-linear-gradient(0deg, transparent 0 25px, rgba(var(--gray), 0.08) 26px);
+      }
+      .software h2 {
+        margin-bottom: 0.25rem;
+        color: var(--accent);
+        font-size: 1.5rem;
+      }
+      .software p {
+        color: rgb(var(--gray-dark));
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .project-area:hover,
+        .project-area:focus-visible {
+          transform: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <Header />
     <main>
-      <h1>Coming soon(&trade;)...</h1>
-      <p>
-        Nothing here yet. When there is, it'll be the art as much as the code,
-        because I've never really kept those two apart. Until then, what I've
-        pushed publicly is on
-        <a href="https://github.com/inayayousfi">GitHub</a>.
-      </p>
+      <div class="intro">
+        <h1>Projects</h1>
+        <p>I make things in 2 different languages.</p>
+      </div>
+      <div class="project-areas">
+        <p class="area-intro software-intro">One uses code and systems.</p>
+        <div class="software-exchange">
+          <p class="software-prompt"><span>$</span> ls projects</p>
+          <a class="project-area software" href="/projects/software/">
+            <h2>Software</h2>
+            <p>
+              Company work, open-source contributions, and personal projects
+              presented from the command line.
+            </p>
+          </a>
+        </div>
+        <p class="area-intro">The other uses images and spaces.</p>
+        <a class="project-area art" href="/projects/art/">
+          <div class="copy">
+            <h2>Art</h2>
+            <p>
+              Posters, experiments, and standalone web pieces that keep their
+              own visual language.
+            </p>
+          </div>
+        </a>
+      </div>
     </main>
     <Footer />
   </body>

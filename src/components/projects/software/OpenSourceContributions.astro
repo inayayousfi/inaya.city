@@ -1,0 +1,57 @@
+---
+const contributions = [
+  {
+    title: "Lorem Contribution",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This placeholder tests contributed work.",
+    upstreamProject: "Lorem Upstream",
+    problem: "A placeholder edge case produced unclear behavior.",
+    contribution: "Added a focused change and supporting verification.",
+    result: "The upstream placeholder now handles the case explicitly.",
+    destinations: [
+      { label: "Example destination", href: "https://example.com/" },
+    ],
+  },
+];
+---
+
+<section
+  class="software-category"
+  id="open-source-contributions"
+  data-category="open-source-contributions"
+  data-count={contributions.length}
+>
+  <header class="category-heading">
+    <p class="command"><span>$</span> list open-source-contributions</p>
+    <h2>Open Source Contributions</h2>
+  </header>
+  <div class="output-heading" aria-hidden="true">
+    <span>Project</span><span>Details</span><span>Links</span>
+  </div>
+  <div class="project-rows">
+    {
+      contributions.map((contribution) => (
+        <details class="project-row" open>
+          <summary>
+            <span class="project-title">{contribution.title}</span>
+            <span class="project-summary">{contribution.summary}</span>
+            <span class="disclosure-label" aria-hidden="true">inspect</span>
+          </summary>
+          <div class="row-content">
+            <dl class="project-details">
+              <div><dt>Upstream</dt><dd>{contribution.upstreamProject}</dd></div>
+              <div><dt>Problem</dt><dd>{contribution.problem}</dd></div>
+              <div><dt>Contribution</dt><dd>{contribution.contribution}</dd></div>
+              <div><dt>Result</dt><dd>{contribution.result}</dd></div>
+            </dl>
+            <ul class="project-destinations" aria-label={`${contribution.title} links`}>
+              {contribution.destinations.map((destination) => (
+                <li><a href={destination.href}>{destination.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>

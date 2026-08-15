@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A standalone Lorem Ipsum poster composition by Inaya Yousfi."
+    />
+    <title>Lorem Ipsum</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f1e9d3;
+        color: #17130e;
+        overflow-x: hidden;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        background:
+          linear-gradient(120deg, transparent 0 57%, #ed3b2f 57% 74%, transparent 74%),
+          #f1e9d3;
+      }
+      main {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(15rem, 0.7fr);
+        min-height: 100vh;
+        padding: clamp(1.25rem, 4vw, 4rem);
+      }
+      .number {
+        position: absolute;
+        top: -0.18em;
+        right: -0.04em;
+        z-index: 0;
+        color: #2454d7;
+        font-size: clamp(17rem, 50vw, 48rem);
+        font-weight: 900;
+        line-height: 0.8;
+        letter-spacing: -0.12em;
+      }
+      .title {
+        position: relative;
+        z-index: 2;
+        grid-column: 2;
+        grid-row: 1;
+        align-self: end;
+        margin: 0;
+        font-size: clamp(4rem, 13vw, 12rem);
+        font-weight: 900;
+        line-height: 0.75;
+        letter-spacing: -0.09em;
+        text-transform: uppercase;
+      }
+      .title span {
+        display: block;
+      }
+      .title span:last-child {
+        margin-left: 0.45em;
+        color: #ed3b2f;
+      }
+      .copy {
+        position: relative;
+        z-index: 2;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: start;
+        max-width: 24rem;
+        margin-left: auto;
+        padding: 1rem;
+        border-top: 0.5rem solid #17130e;
+        background: #f1e9d3;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1rem, 2vw, 1.4rem);
+        line-height: 1.25;
+      }
+      .copy p {
+        margin: 0;
+      }
+      .stamp {
+        position: relative;
+        z-index: 3;
+        grid-column: 2;
+        grid-row: 2;
+        align-self: end;
+        justify-self: end;
+        margin-top: 1rem;
+        padding: 0.55rem 0.8rem;
+        border: 3px solid #17130e;
+        background: #f1e9d3;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        transform: rotate(-5deg);
+      }
+      @media (max-width: 700px) {
+        main {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr auto;
+        }
+        .number {
+          top: 18%;
+          font-size: 85vw;
+        }
+        .copy {
+          grid-column: 1;
+          grid-row: 1;
+          margin: 0;
+        }
+        .title {
+          grid-column: 1;
+          grid-row: 2;
+          align-self: center;
+        }
+        .stamp {
+          grid-column: 1;
+          grid-row: 3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="number" aria-hidden="true">2</div>
+      <div class="copy">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+          vitae justo at sapien consequat posuere.
+        </p>
+      </div>
+      <h1 class="title"><span>Lorem</span><span>Ipsum</span></h1>
+      <div class="stamp">Independent study / 20XX</div>
+    </main>
+  </body>
+</html>

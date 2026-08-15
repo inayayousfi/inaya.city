@@ -1,0 +1,57 @@
+---
+const projects = [
+  {
+    title: "Lorem Personal Project",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This placeholder tests personal work.",
+    motivation: "Understand a placeholder system by building one completely.",
+    challenge: "Keep every layer legible without hiding complexity.",
+    lessons: "Small primitives made the placeholder easier to change.",
+    status: "In progress",
+    destinations: [
+      { label: "Example destination", href: "https://example.com/" },
+    ],
+  },
+];
+---
+
+<section
+  class="software-category"
+  id="personal-projects"
+  data-category="personal-projects"
+  data-count={projects.length}
+>
+  <header class="category-heading">
+    <p class="command"><span>$</span> list personal-projects</p>
+    <h2>Personal Projects</h2>
+  </header>
+  <div class="output-heading" aria-hidden="true">
+    <span>Project</span><span>Details</span><span>Links</span>
+  </div>
+  <div class="project-rows">
+    {
+      projects.map((project) => (
+        <details class="project-row" open>
+          <summary>
+            <span class="project-title">{project.title}</span>
+            <span class="project-summary">{project.summary}</span>
+            <span class="disclosure-label" aria-hidden="true">inspect</span>
+          </summary>
+          <div class="row-content">
+            <dl class="project-details">
+              <div><dt>Motivation</dt><dd>{project.motivation}</dd></div>
+              <div><dt>Challenge</dt><dd>{project.challenge}</dd></div>
+              <div><dt>Lessons</dt><dd>{project.lessons}</dd></div>
+              <div><dt>Status</dt><dd>{project.status}</dd></div>
+            </dl>
+            <ul class="project-destinations" aria-label={`${project.title} links`}>
+              {project.destinations.map((destination) => (
+                <li><a href={destination.href}>{destination.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
