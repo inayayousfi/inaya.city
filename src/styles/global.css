@@ -16,6 +16,9 @@
 	--gray-gradient: rgba(var(--gray-light), 100%), #0f1115; /* page bg gradient */
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 20%), 0 16px 32px rgba(var(--gray), 15%);
+	--card-radius: 4px;
+	--card-lift: -4px;
+	--card-arrow-shift: 4px;
 
 	/* Unified content width across the site (match blog posts) */
 	--content-width: 720px;

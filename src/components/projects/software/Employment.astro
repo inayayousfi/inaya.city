@@ -1,0 +1,63 @@
+---
+const roles = [
+  {
+    title: "Lorem Employment",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This placeholder tests employment history.",
+    employer: "Lorem Employer",
+    period: "20XX - 20XX",
+    mandate: "Own a placeholder area and make its failures visible.",
+    outcomes: "Reduced uncertainty around the placeholder workflow.",
+    teamContext: "Worked alongside a small multidisciplinary team.",
+    destinations: [] as { label: string; href: string }[],
+  },
+];
+---
+
+<section
+  class="software-category"
+  id="employment"
+  data-category="employment"
+  data-count={roles.length}
+>
+  <header class="category-heading">
+    <p class="command"><span>$</span> list employment</p>
+    <h2>Employment</h2>
+  </header>
+  <div class="output-heading" aria-hidden="true">
+    <span>Project</span><span>Details</span><span>Links</span>
+  </div>
+  <div class="project-rows">
+    {
+      roles.map((role) => (
+        <details class="project-row" open>
+          <summary>
+            <span class="project-title">{role.title}</span>
+            <span class="project-summary">{role.summary}</span>
+            <span class="disclosure-label" aria-hidden="true">inspect</span>
+          </summary>
+          <div class="row-content">
+            <dl class="project-details">
+              <div><dt>Employer</dt><dd>{role.employer}</dd></div>
+              <div><dt>Period</dt><dd>{role.period}</dd></div>
+              <div><dt>Mandate</dt><dd>{role.mandate}</dd></div>
+              <div><dt>Outcomes</dt><dd>{role.outcomes}</dd></div>
+              <div><dt>Team</dt><dd>{role.teamContext}</dd></div>
+            </dl>
+            <ul class="project-destinations" aria-label={`${role.title} links`}>
+              {
+                role.destinations.length === 0 ? (
+                  <li class="empty-destination">No public links</li>
+                ) : (
+                  role.destinations.map((destination) => (
+                    <li><a href={destination.href}>{destination.label}</a></li>
+                  ))
+                )
+              }
+            </ul>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>

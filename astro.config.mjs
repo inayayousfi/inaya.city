@@ -8,5 +8,10 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	site: 'https://www.inaya.city',
 	compressHTML: false,
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			customPages: ['https://www.inaya.city/projects/art/lorem-ipsum/'],
+		}),
+	],
 });

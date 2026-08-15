@@ -1,0 +1,57 @@
+---
+const projects = [
+  {
+    title: "Lorem Maintained Project",
+    summary:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. This placeholder tests maintained work.",
+    purpose: "Make a placeholder system smaller and easier to understand.",
+    maintainerRole: "Primary maintainer",
+    maintenanceStatus: "Active",
+    technologies: ["Lorem", "Ipsum"],
+    destinations: [
+      { label: "Example destination", href: "https://example.com/" },
+    ],
+  },
+];
+---
+
+<section
+  class="software-category"
+  id="open-source-maintained"
+  data-category="open-source-maintained"
+  data-count={projects.length}
+>
+  <header class="category-heading">
+    <p class="command"><span>$</span> list open-source-maintained</p>
+    <h2>Open Source Maintained Projects</h2>
+  </header>
+  <div class="output-heading" aria-hidden="true">
+    <span>Project</span><span>Details</span><span>Links</span>
+  </div>
+  <div class="project-rows">
+    {
+      projects.map((project) => (
+        <details class="project-row" open>
+          <summary>
+            <span class="project-title">{project.title}</span>
+            <span class="project-summary">{project.summary}</span>
+            <span class="disclosure-label" aria-hidden="true">inspect</span>
+          </summary>
+          <div class="row-content">
+            <dl class="project-details">
+              <div><dt>Purpose</dt><dd>{project.purpose}</dd></div>
+              <div><dt>Role</dt><dd>{project.maintainerRole}</dd></div>
+              <div><dt>Status</dt><dd>{project.maintenanceStatus}</dd></div>
+              <div><dt>Technologies</dt><dd>{project.technologies.join(", ")}</dd></div>
+            </dl>
+            <ul class="project-destinations" aria-label={`${project.title} links`}>
+              {project.destinations.map((destination) => (
+                <li><a href={destination.href}>{destination.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+</section>
